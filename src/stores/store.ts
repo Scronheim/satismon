@@ -23,7 +23,7 @@ export const useStore = defineStore('store', () => {
   // Methods
   const connectToSocket = async (): Promise<boolean> => {
     return new Promise((resolve, reject) => {
-      socket = new WebSocket('ws://192.168.0.13:8080')
+      socket = new WebSocket(`ws://${import.meta.env.DEV ? '192.168.0.13:8080' : hostname.value}`)
       socket.onopen = function (e) {
         console.log('socket connected')
         resolve(true)
